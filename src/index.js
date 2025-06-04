@@ -22,6 +22,7 @@ export default {
         .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
     }
+
     try {
       if (request.method.toUpperCase() === "POST") {
         const body = await request.clone().text();
@@ -48,6 +49,8 @@ export default {
           response = await fetch(request);
           ctx.waitUntil(cache.put(cacheKey, response.clone()));
         }
+
+				response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
 
         return response;
       }
