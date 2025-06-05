@@ -50,8 +50,6 @@ export default {
           ctx.waitUntil(cache.put(cacheKey, response.clone()));
         }
 
-				response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-
         return response;
       }
 
